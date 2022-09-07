@@ -1,0 +1,38 @@
+[
+	{
+		"radiation": "0.121",
+		"longi": 126.9947,
+		"name": "seoul",
+		"rati": 37.5655
+	},
+	{
+		"radiation": "0.115",
+		"longi": 128.875856,
+		"name": "Gangneung",
+		"rati": 37.752217
+	},
+	{
+		"radiation": "0.127",
+		"longi": 127.384794,
+		"name": "Daejeon",
+		"rati": 36.350768
+	},
+	{
+		"radiation": "0.089",
+		"longi": 127.749,
+		"name": "Yeosu",
+		"rati": 34.7531
+	},
+	{
+		"radiation": "0.086",
+		"longi": 126.5307,
+		"name": "Jeju",
+		"rati": 33.3784
+	},
+	{
+		"radiation": "0.087",
+		"longi": 129.2886,
+		"name": "Gori",
+		"rati": 35.3343
+	}
+]

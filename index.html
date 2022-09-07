@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <title>방사능 지도 - 방사능 수치 비교</title> 
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/jquery.bxslider.css">
+    <script src="js/jquery-2.2.4.min.js"></script>
+	<script src="js/jquery.bxslider.js"></script>
+	<!--[if lt IE 9]>
+		<script src="js/html5shiv.js"></script>
+	<![endif]-->
+
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="index.html">홈</a></li>
+        <li><a href="1.html">방사능 소개</a></li>
+        <li><a href="2.html">방사능 지도</a></li>
+        <li><a href="3.html">행동요령</a></li>
+        <li><a href="4.html">방사능 뉴스</a></li>
+      </ul>
+      <a href="#" id="trigger">MENU</a>
+    </nav>
+	<div class="content">
+		<figure>
+			<figcaption><h2>원전사고 발생 시 행동요령 동영상</h2></figcaption>
+			<video src="http://ov01-ip3798.ktics.co.kr/safe/radiation_behavior.mp4" controls width="700"></video>
+		</figure>
+		<h2>방사능 누출사고 행동요령</h2>
+		<h3>실내 대피 통보 시</h3>
+        <div id="wrapper">
+            <div class="bxslider">
+                <div>
+                    <img src="http://www.safekorea.go.kr/idsiSFK/neo/ext/img/prevent/SDIJKM5128_01_20190528.PNG" title="신속히 귀가하고 현관문과 창문을 모두 닫은 후 에어컨과 환풍기는 즉시 끕니다.">
+                </div>
+                <div>
+                    <img src="http://www.safekorea.go.kr/idsiSFK/neo/ext/img/prevent/SDIJKM5128_02_20190528.PNG" title="손과 발, 얼굴을 씻고 옷도 갈아입습니다.">
+                </div>
+                <div>
+                    <img src="http://www.safekorea.go.kr/idsiSFK/neo/ext/img/prevent/SDIJKM5128_03_20190528.PNG" title="음식물은 밀봉하고 밖에 널린 세탁물은 안으로 들여옵니다.">
+                </div>
+                <div>
+                    <img src="http://www.safekorea.go.kr/idsiSFK/neo/ext/img/prevent/SDIJKM5128_04_20190528.PNG" title="귀가가 어려울 경우에는 가까운 콘크리트 건물 안으로 이동합니다.">
+                </div>
+            </div>
+        </div>
+		<h3>안전지역 대피 통보 시</h3>
+        <div id="wrapper" width="600";>
+            <div class="bxslider">
+                <div>
+                    <img src="http://www.safekorea.go.kr/idsiSFK/neo/ext/img/prevent/SDIJKM5128_05_20190528.PNG" title="현관문과 모든 창문을 닫고, 구급약품, 의복 같은 간단한 생필품을 준비합니다.">
+                </div>
+                <div>
+                    <img src="http://www.safekorea.go.kr/idsiSFK/neo/ext/img/prevent/SDIJKM5128_06_20190528.PNG" title="추가사고 예방을 위해 전기, 가스, 수도 등은 모두 끄고 안내에 따라 질서있게 구호소로 이동합니다.">
+                </div>
+            </div>
+        </div>
+		<p>자료 제공: <a href="http://safekorea.go.kr/" target="_blank">국민재난안전포털</a></p>
+        <script>
+            //메뉴
+            $(function () {
+                var trigger = $('#trigger');
+                var menu = $('nav ul');
+                $(trigger).on('click', function (e) {
+                e.preventDefault();
+                menu.slideToggle();
+                });
+                $(window).resize(function () {
+                    var w = $(window).width();
+                    if (w > 320 && menu.is(':hidden')) {
+                    menu.removeAttr('style');
+                    }
+                });
+            });
+    $(function() {
+        $('.bxslider').bxSlider({
+            slideWidth: 600,
+            captions: true,
+            mode: 'fade'/*,
+            auto: true,
+            autoControls: true,
+            stopAutoOnclick: true*/
+        });
+    })
+          </script>
+    </body>
+</html>

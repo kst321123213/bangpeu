@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<style>
+.label {margin-bottom: 5px;}
+.label * {display: inline-block;vertical-align: top;}
+.label .left {background: url("http://t1.daumcdn.net/localimg/localimages/07/2011/map/storeview/tip_l.png") no-repeat;display: inline-block;height: 24px;overflow: hidden;vertical-align: top;width: 7px;}
+.label .center {background: url(http://t1.daumcdn.net/localimg/localimages/07/2011/map/storeview/tip_bg.png) repeat-x;display: inline-block;height: 24px;font-size: 12px;line-height: 24px;}
+.label .right {background: url("http://t1.daumcdn.net/localimg/localimages/07/2011/map/storeview/tip_r.png") -1px 0  no-repeat;display: inline-block;height: 24px;overflow: hidden;width: 6px;}
+</style>
+<head>
+    <meta charset="utf-8">
+    <title>원, 선, 사각형, 다각형 표시하기</title>
+
+</head>
+<body>
+<div id="map" style="width:100%;height:1050px;"></div>
+<script src="jquery.js"></script>
+<script type="text/javascript" src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=ab2a440b0feefbff6f996ecf34544b27"></script>
+<script>
+  var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+      mapOption = {
+          center: new kakao.maps.LatLng(36.450701, 127.570667), // 지도의 중심좌표
+          level: 12 // 지도의 확대 레벨
+      };
+
+  var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+  data = [
+          {
+                  "radiation": "0.121",
+                  "longi": 126.9947,
+                  "name": "seoul",
+                  "lati": 37.5655
+          },
+          {
+                  "radiation": "0.115",
+                  "longi": 128.875856,
+                  "name": "Gangneung",
+                  "lati": 37.752217
+          },
+          {
+                  "radiation": "0.127",
+                  "longi": 127.384794,
+                  "name": "Daejeon",
+                  "lati": 36.350768
+          },
+          {
+                  "radiation": "0.089",
+                  "longi": 127.749,
+                  "name": "Yeosu",
+                  "lati": 34.7531
+          },
+          {
+                  "radiation": "0.086",
+                  "longi": 126.5307,
+                  "name": "Jeju",
+                  "lati": 33.3784
+          },
+          {
+                  "radiation": "0.087",
+                  "longi": 129.2886,
+                  "name": "Gori",
+                  "lati": 35.3343
+          }
+  ];
+
+  colors = [
+    {
+      "fill": '#5555FF',
+      "line": '#2222FA',
+    },
+    {
+      "fill": '#CFE7FF',
+      "line": '#75B8FA',
+    },
+    {
+      "fill": '#0000ff',
+      "line": '#0000ff',
+    },
+    {
+      "fill": '#0000ff',
+      "line": '#0000ff',
+    },
+    {
+      "fill": '#0000ff',
+      "line": '#0000ff',
+    },
+    {
+      "fill": '#0000ff',
+      "line": '#0000ff',
+    },
+    {
+      "fill": '#0000ff',
+      "line": '#0000ff',
+    },
+    {
+      "fill": '#0000ff',
+      "line": '#0000ff',
+    },
+    {
+      "fill": '#0000ff',
+      "line": '#0000ff',
+    },
+    {
+      "fill": '#0000ff',
+      "line": '#0000ff',
+    }
+  ]
+
+
+  for ( var i in data ) {
+    console.log(data[i].longi, data[i].lati);
+
+    var color1 = colors[0].fill;
+    var color2 = colors[0].line;
+
+    // 시버트 수치에 따른 색깔 변경
+    if (data[i].radiation < 0.1) {
+      color1 = colors[0].fill;
+      color2 = colors[0].line;
+    } else if (data[i].radiation < 0.2) {
+      color1 = colors[1].fill;
+      color2 = colors[1].line;
+    } else if (data[i].radiation < 0.5) {
+      color1 = colors[2].fill;
+      color2 = colors[2].line;
+    } else if (data[i].radiation < 1.0) {
+      color1 = colors[3].fill;
+      color2 = colors[3].line;
+    } else if (data[i].radiation < 1.9) {
+      color1 = colors[4].fill;
+      color2 = colors[4].line;
+    } else if (data[i].radiation < 3.8 ){
+      color1 = colors[5].fill;
+      color2 = colors[5].line;
+    } else if (data[i].radiation < 9.5) {
+      color1 = colors[6].fill;
+      color2 = colors[6].line;
+    } else if (data[i].radiation < 19.0) {
+      color1 = colors[7].fill;
+      color2 = colors[7].line;
+    }
+
+    var content = '<div class ="label"><span class="left"></span><span class="center">' + data[i].name+' '+data[i].radiation +'μSv/h</span><span class="right"></span></div>';
+    // 커스텀 오버레이를 생성
+    var customLabel = new kakao.maps.CustomOverlay({
+        position: new kakao.maps.LatLng(data[i].lati, data[i].longi),
+        content: content
+    });
+    customLabel.setMap(map);
+
+    var circle = new kakao.maps.Circle({
+        center : new kakao.maps.LatLng(data[i].lati, data[i].longi),
+        radius: 30000, // 미터, 원의 반지름
+        strokeWeight: 5, // 선의 두께
+        fillColor: color1,   // 채우기 색
+        strokeColor: color2, // 선의 색
+        fillOpacity: 0.7,  // 채우기 불투명도
+        strokeOpacity: 1, // 선의 불투명도
+        strokeStyle: 'solid', // 선의 스타일
+    });
+    circle.setMap(map);
+
+  }
+
+
+
+
+</script>
+</body>
+</html>
